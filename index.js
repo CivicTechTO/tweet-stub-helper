@@ -14,10 +14,19 @@ const Bar = { template: '<div>bar</div>' }
 const routes = [
   { path: '/',
     beforeEnter(to, from, next) {
-      // Put the full page url including the protocol http(s) below
-      tweetStub = '@ImagineCanada #nonprofit #charity #philanthropy'
-      const redirectUrl = 'https://twitter.com/intent/tweet?text=' + encodeURIComponent(tweetStub)
-      window.location = redirectUrl
+      const key = '1-p0CyUMC0nqrEQNc6Yikd2vg033GoChSWR8rFKFxfgU'
+      const id = '1209202081'
+      const csvUrl = `https://docs.google.com/spreadsheets/d/${key}/export?format=csv&id=${key}&gid=${id}`
+      Papa.parse(csvUrl, {
+        download: true,
+        header: true,
+        complete: function(results, file) {
+          const headerName = 'presenter_social_media'
+          const tweetStubContent = results.data[3][headerName]
+          const redirectUrl = 'https://twitter.com/intent/tweet?text=' + encodeURIComponent(tweetStubContent)
+          window.location = redirectUrl
+        },
+      })
     },
   },
 ]
