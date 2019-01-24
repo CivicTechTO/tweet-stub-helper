@@ -22,7 +22,7 @@ const routes = [
         header: true,
         complete: function(results, file) {
           const headerName = 'presenter_social_media'
-          const tweetStubContent = results.data[3][headerName]
+          const tweetStubContent = results.data[4][headerName]
           const redirectUrl = 'https://twitter.com/intent/tweet?text=' + encodeURIComponent(tweetStubContent)
           window.location = redirectUrl
         },
