@@ -4,7 +4,7 @@ Simple app for creating tweet stubs from a Google Sheet.
 
 ## Usage
 
-For the defaults configuration for CivicTechTO, just visit:
+To demo the default behavior set up for CivicTechTO, just visit:
 
 [`civictechto.github.io/tweet-stub-helper`](http://civictechto.github.io/tweet-stub-helper)
 
