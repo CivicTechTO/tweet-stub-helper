@@ -12,7 +12,7 @@ For the defaults configuration for CivicTechTO, just visit:
 
 The app does the following when you visit it:
 
-1. Grabs the data from a [a designated Google Spreadsheet]()
+1. Grabs the data from a [a designated Google Spreadsheet](https://docs.google.com/spreadsheets/d/1-p0CyUMC0nqrEQNc6Yikd2vg033GoChSWR8rFKFxfgU/edit#gid=1209202081)
 2. Loops through rows, checking the `date` column until it finds on in
    the future.
 3. On finding a future event, grabs the content of the
