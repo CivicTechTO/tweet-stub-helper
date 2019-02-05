@@ -1,16 +1,6 @@
-// 0. If using a module system (e.g. via vue-cli), import Vue and VueRouter
-// and then call `Vue.use(VueRouter)`.
+// Scaffolded from: https://router.vuejs.org/guide/#javascript
 
-// 1. Define route components.
-// These can be imported from other files
-const Foo = { template: '<div>foo</div>' }
-const Bar = { template: '<div>bar</div>' }
-
-// 2. Define some routes
-// Each route should map to a component. The "component" can
-// either be an actual component constructor created via
-// `Vue.extend()`, or just a component options object.
-// We'll talk about nested routes later.
+// Redirect before entering the route.
 const routes = [
   { path: '/',
     beforeEnter(to, from, next) {
@@ -21,8 +11,17 @@ const routes = [
         download: true,
         header: true,
         complete: function(results, file) {
+          var currentEvent
+          for (let row of results.data) {
+            console.log(row['date'])
+            var date = new Date(row['date'])
+            if (!eventDateIsPast(date)) {
+              break
+            }
+            currentEvent = row
+          }
           const headerName = 'presenter_social_media'
-          const tweetStubContent = results.data[4][headerName]
+          const tweetStubContent = currentEvent[headerName]
           const redirectUrl = 'https://twitter.com/intent/tweet?text=' + encodeURIComponent(tweetStubContent)
           window.location = redirectUrl
         },
@@ -30,6 +29,21 @@ const routes = [
     },
   },
 ]
+
+// Check whether the event day has passed.
+// This will work until the day after the event.
+var eventDateIsPast = function (date) {
+  const now = new Date(Date.now())
+  if (date.getFullYear() < now.getFullYear()) {
+    return true
+  } else if (date.getMonth() < now.getMonth()) {
+    return true
+  } else if (date.getDate() < now.getDate()) {
+    return true
+  } else {
+    return false
+  }
+}
 
 // 3. Create the router instance and pass the `routes` option
 // You can pass in additional options here, but let's
