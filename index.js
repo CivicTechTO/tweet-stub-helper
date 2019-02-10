@@ -15,10 +15,10 @@ const routes = [
           for (let row of results.data) {
             console.log(row['date'])
             var date = new Date(row['date'])
-            if (!eventDateIsPast(date)) {
+            currentEvent = row
+            if (isFuture(date)) {
               break
             }
-            currentEvent = row
           }
           const headerName = 'presenter_social_media'
           const tweetStubContent = currentEvent[headerName]
@@ -30,19 +30,18 @@ const routes = [
   },
 ]
 
-// Check whether the event day has passed.
+// Check whether the day in question has passed.
 // This will work until the day after the event.
-var eventDateIsPast = function (date) {
+var isFuture = function (date) {
   const now = new Date(Date.now())
-  if (date.getFullYear() < now.getFullYear()) {
-    return true
-  } else if (date.getMonth() < now.getMonth()) {
-    return true
-  } else if (date.getDate() < now.getDate()) {
-    return true
-  } else {
-    return false
+  if (date.getFullYear() >= now.getFullYear()) {
+    if (date.getMonth() >= now.getMonth()) {
+      if (date.getDate() > now.getDate()) {
+        return true
+      }
+    }
   }
+  return false
 }
 
 // 3. Create the router instance and pass the `routes` option
