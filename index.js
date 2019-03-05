@@ -12,11 +12,17 @@ const routes = [
         header: true,
         complete: function(results, file) {
           var currentEvent
+          // Assumes rows are events listed from past to future.
+          // TODO: Sort data by date
           for (let row of results.data) {
             console.log(row['date'])
-            var date = new Date(row['date'])
+            // Don't roll-over to next week's info until late-night and event's done.
+            var date = luxon.DateTime.fromISO(row['date'])
+              .setZone('America/Toronto')
+              .set({hour: 23, minute: 59})
             currentEvent = row
             if (isFuture(date)) {
+              // Stop looking after first future event found.
               break
             }
           }
@@ -33,15 +39,12 @@ const routes = [
 // Check whether the day in question has passed.
 // This will work until the day after the event.
 var isFuture = function (date) {
-  const now = new Date(Date.now())
-  if (date.getFullYear() >= now.getFullYear()) {
-    if (date.getMonth() >= now.getMonth()) {
-      if (date.getDate() > now.getDate()) {
-        return true
-      }
-    }
+  const now = luxon.DateTime.local()
+  if (now < date) {
+    return true
+  } else {
+    return false
   }
-  return false
 }
 
 // 3. Create the router instance and pass the `routes` option
