@@ -1,3 +1,5 @@
+---
+---
 <!doctype html>
 <html lang="en">
   <head>
@@ -14,7 +16,7 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/github-fork-ribbon-css/0.2.2/gh-fork-ribbon.min.css" />
 
-    <title>Hacknight Tweet Helper - Civic Tech Toronto</title>
+    <title>{{ site.app_name }} - {{ site.org_name }}</title>
     <style>
       .row {
         padding-top: 30px;
@@ -22,12 +24,12 @@
     </style>
   </head>
   <body>
-    <a class="github-fork-ribbon" href="https://github.com/CivicTechTO/tweet-stub-helper" data-ribbon="Fork me on GitHub" title="Fork me on GitHub">Fork me on GitHub</a>
+    <a class="github-fork-ribbon" href="{{ site.fork_me_url }}" data-ribbon="Fork me on GitHub" title="Fork me on GitHub">Fork me on GitHub</a>
     <nav class="navbar navbar-dark bg-dark">
-      <a class="navbar-brand" href="http://civictech.ca">Civic Tech Toronto</a>
+      <a class="navbar-brand" href="{{ site.org_url }}">{{ site.org_name }}</a>
       <ul class="navbar-nav mr-auto">
         <li class="navbar-item">
-          <a class="nav-link" href="#">Hacknight Tweet Helper</a>
+          <a class="nav-link" href="#">{{ site.app_name }}</a>
         </li>
       </ul>
     </nav>
