@@ -32,9 +32,10 @@ const routes = [
           // Assumes rows are events listed from past to future.
           // TODO: Sort data by date
           for (let row of results.data) {
-            console.log(row['date'])
+            const dateHeader = '{{ site.gsheet.date_header }}'
+            console.log(row[dateHeader])
             // Don't roll-over to next week's info until late-night and event's done.
-            var date = luxon.DateTime.fromISO(row['date'])
+            var date = luxon.DateTime.fromISO(row[dateHeader])
               .setZone('America/Toronto')
               .set({hour: 23, minute: 59})
             currentEvent = row
@@ -43,8 +44,8 @@ const routes = [
               break
             }
           }
-          const headerName = '{{ site.gsheet.header_name }}'
-          const tweetStubContent = currentEvent[headerName]
+          const contentHeader = '{{ site.gsheet.content_header }}'
+          const tweetStubContent = currentEvent[contentHeader]
           const redirectUrl = 'https://twitter.com/intent/tweet?text=' + encodeURIComponent(tweetStubContent)
           window.location.replace(redirectUrl)
         },

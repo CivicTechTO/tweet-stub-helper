@@ -5,4 +5,5 @@ org_url: http://civictech.ca
 gsheet:
   key: 1-p0CyUMC0nqrEQNc6Yikd2vg033GoChSWR8rFKFxfgU
   sheet_id: 1209202081
-  header_name: presenter_social_media
+  date_header: date
+  content_header: presenter_social_media

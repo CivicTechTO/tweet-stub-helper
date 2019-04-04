@@ -49,6 +49,10 @@
       </div>
     </div>
     <div id="app"></div>
-    <script src="index.js?v=5"></script>
+    {% if site.github -%}
+      <script src="index.js?v={{ site.github.build_revision }}"></script>
+    {% else %}
+      <script src="index.js?v=5"></script>
+    {%- endif %}
   </body>
 </html>
