@@ -1,3 +1,5 @@
+---
+---
 // Scaffolded from: https://router.vuejs.org/guide/#javascript
 
 function getQueryVariable(variable) {
@@ -19,8 +21,8 @@ const routes = [
       if (!["1", "true", "yes"].includes(getQueryVariable('redirect'))) {
         return
       }
-      const key = '1-p0CyUMC0nqrEQNc6Yikd2vg033GoChSWR8rFKFxfgU'
-      const id = '1209202081'
+      const key = '{{ site.gsheet.key }}'
+      const id = '{{ site.gsheet.sheet_id }}'
       const csvUrl = `https://docs.google.com/spreadsheets/d/${key}/export?format=csv&id=${key}&gid=${id}`
       Papa.parse(csvUrl, {
         download: true,
@@ -41,7 +43,7 @@ const routes = [
               break
             }
           }
-          const headerName = 'presenter_social_media'
+          const headerName = '{{ site.gsheet.header_name }}'
           const tweetStubContent = currentEvent[headerName]
           const redirectUrl = 'https://twitter.com/intent/tweet?text=' + encodeURIComponent(tweetStubContent)
           window.location.replace(redirectUrl)
