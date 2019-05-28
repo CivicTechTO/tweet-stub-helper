@@ -2,6 +2,7 @@ fork_me_url: https://github.com/civictechto/tweet-stub-helper
 app_name: Hacknight Tweet Helper
 org_name: Civic Tech Toronto
 org_url: http://civictech.ca
+default_tweet: "@CivicTechTO #civictech #toronto"
 gsheet:
   key: 1-p0CyUMC0nqrEQNc6Yikd2vg033GoChSWR8rFKFxfgU
   sheet_id: 1209202081
