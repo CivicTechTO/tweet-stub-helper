@@ -45,7 +45,10 @@ const routes = [
             }
           }
           const contentHeader = '{{ site.gsheet.content_header }}'
-          const tweetStubContent = currentEvent[contentHeader]
+          var tweetStubContent = currentEvent[contentHeader]
+          if (!/\B(?:\#|\@)[a-zA-Z_]+\b/.test(tweetStubContent)) {
+            tweetStubContent = '{{ site.default_tweet }}'
+          }
           const redirectUrl = 'https://twitter.com/intent/tweet?text=' + encodeURIComponent(tweetStubContent)
           window.location.replace(redirectUrl)
         },
